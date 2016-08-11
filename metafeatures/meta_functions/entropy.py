@@ -1,6 +1,7 @@
 from __future__ import division
 import numpy as np
 
+
 def entropy(labels):
     labels_counted = labels.value_counts()._values
     n_labels = len(labels_counted)

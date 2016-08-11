@@ -1,5 +1,6 @@
 import pandas as pd
-from meta_functions.entropy import entropy
+
+from metafeatures.meta_functions.entropy import entropy
 
 #Load a dataset
 data = pd.read_csv('datasets/weather_year.csv')

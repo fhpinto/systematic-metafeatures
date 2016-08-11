@@ -10,4 +10,4 @@ data.get_dtype_counts()
 data.select_dtypes(['object'])
 
 #Entropy example
-print entropy(data['PrecipitationIn'])
+print(entropy(data['PrecipitationIn']))

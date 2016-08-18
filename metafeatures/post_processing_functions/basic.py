@@ -10,10 +10,10 @@ class Mean(PostProcessing):
         pass
 
     def get_input_types(self):
-        return True
+        return 'numerical'
 
-    def get_output_types(self):
-        return True
+    def get_input_arity(self):
+        return 'n'
 
     def _calculate(self, input):
         return np.mean(input)
@@ -25,10 +25,10 @@ class StandardDeviation(PostProcessing):
         pass
 
     def get_input_types(self):
-        return True
+        return 'numerical'
 
-    def get_output_types(self):
-        return True
+    def get_input_arity(self):
+        return 'n'
 
     def _calculate(self, input):
         return np.std(input)
@@ -40,10 +40,10 @@ class Kurtosis(PostProcessing):
         pass
 
     def get_input_types(self):
-        return True
+        return 'numerical'
 
-    def get_output_types(self):
-        return True
+    def get_input_arity(self):
+        return 'n'
 
     def _calculate(self, input):
         return scipy.stats.kurtosis(input)
@@ -55,10 +55,10 @@ class Skew(PostProcessing):
         pass
 
     def get_input_types(self):
-        return True
+        return 'numerical'
 
-    def get_output_types(self):
-        return True
+    def get_input_arity(self):
+        return 'n'
 
     def _calculate(self, input):
         return scipy.stats.skew(input)

@@ -4,7 +4,11 @@ import scipy.sparse
 
 
 class PostProcessing(object):
-    """Abstract post-processing function."""
+    """Abstract post-processing function. Each post-processing function must have the following variables pre-defined:
+
+    get_input_types: "numerical" or "categorical"
+    get_input_arity: "one", "two" or "n" - n represents more than two
+    """
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
@@ -12,7 +16,7 @@ class PostProcessing(object):
         pass
 
     @abc.abstractmethod
-    def get_output_types(self):
+    def get_input_arity(self):
         pass
 
     @abc.abstractmethod

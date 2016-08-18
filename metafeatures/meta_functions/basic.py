@@ -10,11 +10,17 @@ class Mean(MetaFunction):
         """Computes the mean of a set of values."""
         pass
 
-    def get_input_types(self):
-        return True
+    def get_numerical_arity(self):
+        return 1
 
-    def get_output_types(self):
-        return True
+    def get_categorical_arity(self):
+        return 0
+
+    def get_output_type(self):
+        return 'numerical'
+
+    def get_matrix_applicable(self):
+        return False
 
     def _calculate(self, input):
         return np.mean(input)
@@ -25,11 +31,17 @@ class StandardDeviation(MetaFunction):
         """Computes the standard deviation of a set of values."""
         pass
 
-    def get_input_types(self):
-        return True
+    def get_numerical_arity(self):
+        return 1
 
-    def get_output_types(self):
-        return True
+    def get_categorical_arity(self):
+        return 0
+
+    def get_output_type(self):
+        return 'numerical'
+
+    def get_matrix_applicable(self):
+        return False
 
     def _calculate(self, input):
         return np.std(input)
@@ -40,11 +52,17 @@ class Kurtosis(MetaFunction):
         """Computes the kurtosis of a set of values."""
         pass
 
-    def get_input_types(self):
-        return True
+    def get_numerical_arity(self):
+        return 1
 
-    def get_output_types(self):
-        return True
+    def get_categorical_arity(self):
+        return 0
+
+    def get_output_type(self):
+        return 'numerical'
+
+    def get_matrix_applicable(self):
+        return False
 
     def _calculate(self, input):
         return scipy.stats.kurtosis(input)
@@ -55,11 +73,17 @@ class Skew(MetaFunction):
         """Computes the skew of a set of values."""
         pass
 
-    def get_input_types(self):
-        return True
+    def get_numerical_arity(self):
+        return 1
 
-    def get_output_types(self):
-        return True
+    def get_categorical_arity(self):
+        return 0
+
+    def get_output_type(self):
+        return 'numerical'
+
+    def get_matrix_applicable(self):
+        return False
 
     def _calculate(self, input):
         return scipy.stats.skew(input)

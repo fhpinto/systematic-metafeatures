@@ -1,5 +1,8 @@
 import pandas as pd
 from metafeatures.core.object_analyzer import analyze_pd_dataframe
+from metafeatures.meta_functions.entropy import Entropy
+from metafeatures.core.object_to_mf_mapper import map_object_to_mf
+import itertools
 #Load a dataset
 data = pd.read_csv('datasets/weather_year.csv')
 
@@ -9,3 +12,15 @@ data.select_dtypes(['object'])
 
 #Entropy example
 data, attributes = analyze_pd_dataframe(data, ['Events'])
+entropy = Entropy()
+entropy.get_categorical_arity()
+
+numAttr = {k for k, v in attributes.items() if v['type'] == 'numerical'}
+catAttr  = {k for k, v in attributes.items() if v['type'] == 'categorical'}
+regLabel = {k for k, v in attributes.items() if (v['type'] == 'numerical') and (v['is_target'] == True)}
+classLabel = {k for k, v in attributes.items() if (v['type'] == 'categorical') and (v['is_target'] == True)}
+
+something = map_object_to_mf(attributes, entropy)
+
+tickets = []
+tickets += [list(subset) for subset in itertools.combinations(numAttr, 2)]

@@ -1,6 +1,6 @@
-import numpy as np
 import pandas as pd
 
+from metafeatures.core.object_analyzer import analyze_pd_dataframe
 from metafeatures.meta_functions.entropy import Entropy
 from metafeatures.meta_functions import basic as basic_meta_functions
 from metafeatures.post_processing_functions.basic import Mean, \
@@ -9,24 +9,8 @@ from metafeatures.post_processing_functions.basic import Mean, \
 
 # Load a dataset
 data = pd.read_csv('../datasets/weather_year.csv')
-columns = data.columns
-columns = [column_name.replace(' ', '') for column_name in columns]
-data.columns = columns
-
-categorical = ['PrecipitationIn', 'Events']
-categorical = [True if column_name in categorical else False
-               for column_name in data.columns]
-for i, cat in enumerate(categorical):
-    if cat:
-        column = data.iloc[:, i]
-        unique_values = column.unique()
-        mapping = {uv: j for j, uv in enumerate(unique_values)}
-        column = column.replace(mapping).astype(float)
-        data.iloc[:, i] = column
-
-X = data.iloc[:, 1:-1].astype(float).values
-categorical = categorical[1:-1]
-y = data.iloc[:, -1].astype(float).values
+data, attributes = analyze_pd_dataframe(data, ['Events'])
+# Remove information
 
 post_processing_steps = {'mean': Mean(),
                          'std': StandardDeviation(),
@@ -43,9 +27,10 @@ meta_features = {}
 
 for name, mfc in meta_functions_categorical.items():
     values = []
-    for i, cat in enumerate(categorical):
-        if cat:
-            raw_value = mfc(X[:, i])[0]
+    for index, meta_information in attributes.items():
+        column_type = meta_information['type']
+        if column_type == 'categorical':
+            raw_value = mfc(data[:, index])[0]
             values.append(raw_value)
 
     for pps_name, pps in post_processing_steps.items():
@@ -55,9 +40,10 @@ for name, mfc in meta_functions_categorical.items():
 
 for name, mfc in meta_functions_numerical.items():
     values = []
-    for i, cat in enumerate(categorical):
-        if cat:
-            raw_value = mfc(X[:, i])[0]
+    for index, meta_information in attributes.items():
+        column_type = meta_information['type']
+        if column_type == 'numerical':
+            raw_value = mfc(data[:, index])[0]
             values.append(raw_value)
 
     for pps_name, pps in post_processing_steps.items():

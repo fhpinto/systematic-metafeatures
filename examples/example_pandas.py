@@ -1,7 +1,5 @@
 import pandas as pd
-
-from metafeatures.meta_functions.entropy import entropy
-
+from metafeatures.core.object_analyzer import analyze_pd_dataframe
 #Load a dataset
 data = pd.read_csv('datasets/weather_year.csv')
 
@@ -10,4 +8,4 @@ data.get_dtype_counts()
 data.select_dtypes(['object'])
 
 #Entropy example
-print(entropy(data['PrecipitationIn']))
+data, attributes = analyze_pd_dataframe(data, ['Events'])

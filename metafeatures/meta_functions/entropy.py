@@ -1,6 +1,6 @@
 from __future__ import division
 import numpy as np
-#import scipy.stats
+import scipy.stats
 
 from metafeatures.meta_functions.base import MetaFunction
 
@@ -20,8 +20,9 @@ class Entropy(MetaFunction):
         return False
 
     def _calculate(self, input):
-        # TODO use scipy.stats.entropy
-        #return scipy.stats.entropy(input, base=2)
+        # TODO use scipy.stats.entropy - dont know if its the correct use
+        return scipy.stats.entropy(input[:,0], base=2)
+        #print(input[:,0])
 
-        probs = [np.mean(input == c) for c in set(input)]
-        return np.sum(-p * np.log2(p) for p in probs)
+        #probs = [np.mean(~np.isnan(input[:,0]) == c) for c in set(~np.isnan(input[:,0]))]
+        #return np.sum(-p * np.log2(p) for p in probs)

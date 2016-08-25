@@ -23,7 +23,7 @@ class Mean(MetaFunction):
         return False
 
     def _calculate(self, input):
-        return np.mean(input)
+        return np.mean(~np.isnan(input[:,0]))
 
 
 class StandardDeviation(MetaFunction):
@@ -44,7 +44,7 @@ class StandardDeviation(MetaFunction):
         return False
 
     def _calculate(self, input):
-        return np.std(input)
+        return np.std(~np.isnan(input[:,0]))
 
 
 class Kurtosis(MetaFunction):
@@ -65,7 +65,7 @@ class Kurtosis(MetaFunction):
         return False
 
     def _calculate(self, input):
-        return scipy.stats.kurtosis(input)
+        return scipy.stats.kurtosis(~np.isnan(input[:,0]))
 
 
 class Skew(MetaFunction):
@@ -86,4 +86,4 @@ class Skew(MetaFunction):
         return False
 
     def _calculate(self, input):
-        return scipy.stats.skew(input)
+        return scipy.stats.skew(~np.isnan(input[:,0]))

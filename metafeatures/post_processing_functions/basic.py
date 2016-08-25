@@ -3,6 +3,20 @@ import scipy.stats
 
 from metafeatures.post_processing_functions.base import PostProcessing
 
+class NonAggregated(PostProcessing):
+
+    def __init__(self):
+        """Does nothing!"""
+        pass
+
+    def get_input_types(self):
+        return 'numerical'
+
+    def get_input_arity(self):
+        return 'one'
+
+    def _calculate(self, input):
+        return input[0]
 
 class Mean(PostProcessing):
     def __init__(self):

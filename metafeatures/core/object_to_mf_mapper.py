@@ -15,7 +15,7 @@ def map_object_to_mf(attr_dict, mf):
     if mf.get_matrix_applicable() == True:
         raise NotImplementedError
 
-    # METAFUNCTION THAT CAN HANDLE BOTH NUMERICAL AND CATEGORICAL FEATURES
+    # Metafunction that can handle both numerical and categorical variables
     if mf.get_numerical_arity()==mf.get_categorical_arity():
         raise NotImplementedError
 

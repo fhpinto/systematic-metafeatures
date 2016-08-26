@@ -1,8 +1,6 @@
 from metafeatures.core.object_analyzer import analyze_pd_dataframe
 from metafeatures.core.object_to_mf_mapper import map_object_to_mf
 
-
-
 def metafeature_generator(data, target, metaFunctions, postProcessFunctions):
 
     data_numpy, attributes = analyze_pd_dataframe(data, target)

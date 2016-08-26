@@ -8,9 +8,6 @@ from metafeatures.post_processing_functions.basic import Mean
 from metafeatures.post_processing_functions.basic import StandardDeviation
 from metafeatures.post_processing_functions.basic import NonAggregated
 from metafeatures.core.engine import metafeature_generator
-#from sklearn.metrics.cluster import normalized_mutual_info_score
-#from metafeatures.core.object_analyzer import analyze_pd_dataframe
-#from metafeatures.core.object_to_mf_mapper import map_object_to_mf
 
 #Load a dataset in Pandas DataFrame format
 data = pd.read_csv('../datasets/weather_year.csv')
@@ -34,5 +31,3 @@ metafeatures_values, metafeatures_names = metafeature_generator(
 )
 print(metafeatures_names)
 print(metafeatures_values)
-#data_numpy, attributes = analyze_pd_dataframe(data, ['Events'])
-#ticketsFeatures, ticketsLabels, ticketsFeaturesLabels = map_object_to_mf(attributes, entropy)
